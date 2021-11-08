@@ -8,7 +8,7 @@ const initialState = {
 };
 
 console.log(initialState);
-
+const theme = initialState.theme;
 
 const themeReducer = (state: stateProps, action: themeActionProps) => {
     switch (action.type) {
@@ -46,7 +46,7 @@ console.log(state);
     return (
         <GlobalStateContext.Provider value={state}>
             <GlobalDispatchContext.Provider value={dispatch}>
-                <ThemeProvider theme={initialState.theme === 'light' ? lightTheme : darkTheme}>
+                <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
                     {children}
                 </ThemeProvider>
             </GlobalDispatchContext.Provider>
