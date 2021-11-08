@@ -12,7 +12,7 @@ import { actionTypes } from '../global/types/reducerTypes';
 export default function Header() {
 
     const ThemeState = React.useContext(GlobalStateContext);
-    const ThemeDispatch = React.useContext(GlobalDispatchContext)
+    const ThemeDispatch = React.useContext(GlobalDispatchContext);
 
     // Function to save user preference along with dispatch
     const handleThemeChange = () => {
