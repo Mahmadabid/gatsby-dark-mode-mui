@@ -28,13 +28,13 @@ const ThemesProvider = ({ children }) => {
     const [state, dispatch] = useReducer(themeReducer, initialState);
 
     // To change the preferred theme
-    let theme = 'light';
+    // let theme = 'light';
 
-    if (typeof window !== 'undefined') {
-        theme = localStorage.getItem('preferred-theme');
-        theme = theme ? theme : 'light';
-        state.theme = theme        
-    }
+    // if (typeof window !== 'undefined') {
+    //     theme = localStorage.getItem('preferred-theme');        
+    //     theme = theme ? theme : 'light';
+    //     state.theme = theme        
+    // }
 
     return (
         <GlobalStateContext.Provider value={state}>
