@@ -18,8 +18,8 @@ export default function Header() {
     let theme = 'light';
 
     if (typeof window !== 'undefined') {
-        theme = localStorage.getItem('preferred-theme');
-        theme = theme ? theme : 'light';
+        themed = localStorage.getItem('preferred-theme');
+        theme = themed ? themed : 'light';
         ThemeState.theme = theme;
     }
 
