@@ -1,7 +1,7 @@
 # Dark Mode with Reactjs, Gatsbyjs, Material-Ui(MUI) and Typescript
 
-# How To Use
-```
+## How To Use
+```terminal
 $ git clone git@github.com:cieloazul310/gatsby-material-ui-darkmode.git
 $ cd gatsby-material-ui-darkmode
 
@@ -17,3 +17,7 @@ $ yarn build
 ```
 
 # Toggle color mode
+```jsx
+
+}
+```
