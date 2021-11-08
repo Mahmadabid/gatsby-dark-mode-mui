@@ -35,7 +35,7 @@ export default function Header() {
                     Dark Mode
                 </Typography>
                 <IconButton onClick={() => {handleThemeChange(ThemeState, ThemeDispatch)}} style={{ alignItems: 'right' }} color="inherit">
-                    {theme === 'light' ? <Brightness7Icon /> : <Brightness4Icon />}
+                    {ThemeState.theme === 'light' ? <Brightness7Icon /> : <Brightness4Icon />}
                 </IconButton>
             </Toolbar>
         </AppBar >
