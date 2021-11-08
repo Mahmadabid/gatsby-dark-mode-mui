@@ -40,7 +40,7 @@ const HomePage = () => {
 
     return (
         <div>
-            <p>{theme}</p>
+            <p>{ThemeState.theme}</p>
             <Button variant="contained" color="primary" onClick={() => {handleThemeChange(ThemeState, ThemeDispatch)}}>Toogle Theme</Button>
         </div>
     );
