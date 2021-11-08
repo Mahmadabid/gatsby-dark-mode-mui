@@ -7,6 +7,10 @@ const initialState = {
     theme: typeof(window) !== 'undefined' ? localStorage.getItem('preferred-theme')? localStorage.getItem('preferred-theme'): 'light' : 'light'
 };
 
+const pref = matchMedia("(prefers-color-scheme: dark)")
+console.log(pref);
+matchMedia
+
 console.log('init',initialState);
 const theme = initialState.theme;
 console.log('theme',theme);
