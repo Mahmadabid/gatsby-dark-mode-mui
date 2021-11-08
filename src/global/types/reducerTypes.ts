@@ -6,7 +6,7 @@ export enum themeActionTypes {
     CHANGE_THEME = 'CHANGE_THEME'
 }
 
-export type actionProps = {
+export type themeActionProps = {
     type: themeActionTypes
     payload: string
 }

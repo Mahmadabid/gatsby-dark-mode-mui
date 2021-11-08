@@ -15,10 +15,11 @@ export default function Header() {
     const ThemeDispatch = React.useContext(GlobalDispatchContext);
 
     // To get the theme preference from local storage
-    let theme = ThemeState.theme;
+    let theme = 'light';
 
     if (typeof window !== 'undefined') {
         theme = localStorage.getItem('preferred-theme');
+        theme = theme ? theme : 'light';
     }
 
     return (

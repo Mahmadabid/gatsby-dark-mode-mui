@@ -1,13 +1,13 @@
 import { ThemeProvider } from "@mui/material";
 import React, { createContext, useReducer } from "react";
 import { darkTheme, lightTheme } from "../theme/theme";
-import { stateProps, actionProps, themeActionTypes } from "../types/reducerTypes";
+import { stateProps, themeActionProps, themeActionTypes } from "../types/reducerTypes";
 
 const initialState = {
     theme: "light"
 };
 
-const themeReducer = (state: stateProps, action: actionProps) => {
+const themeReducer = (state: stateProps, action: themeActionProps) => {
     switch (action.type) {
         case themeActionTypes.CHANGE_THEME:
             return {
@@ -20,7 +20,7 @@ const themeReducer = (state: stateProps, action: actionProps) => {
 }
 
 export const GlobalStateContext = createContext(initialState);
-export const GlobalDispatchContext = createContext<React.Dispatch<actionProps>>(() => { });
+export const GlobalDispatchContext = createContext<React.Dispatch<themeActionProps>>(() => { });
 
 const ThemesProvider = ({ children }) => {
 
@@ -30,6 +30,7 @@ const ThemesProvider = ({ children }) => {
 
     if (typeof window !== 'undefined') {
         theme = localStorage.getItem('preferred-theme');
+        theme = theme ? theme : 'light';
     }
     
     return (

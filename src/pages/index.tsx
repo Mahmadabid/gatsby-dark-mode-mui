@@ -1,5 +1,4 @@
 import React from "react";
-import ThemeButton from "../components/button";
 import Header from "../components/header";
 import Layout from "../components/layout";
 
@@ -9,7 +8,6 @@ const HomePage = () => {
     <Layout>
       <Header />
       <div style={{ marginLeft: '20px' }}>
-        <ThemeButton />
         <h1>Dark Mode Toggle</h1>
         <p>
           This is a simple example of how to toggle dark mode in React.

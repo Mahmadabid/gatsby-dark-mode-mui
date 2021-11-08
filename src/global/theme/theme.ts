@@ -1,3 +1,4 @@
+import { stateProps, themeActionProps } from './../types/reducerTypes';
 import { createTheme } from "@mui/material";
 import { themeActionTypes } from "../types/reducerTypes";
 
@@ -15,7 +16,7 @@ export const lightTheme = createTheme({
 
 
 // Function to save user preference along with dispatch
-export const handleThemeChange = (State, Dispatch) => {
+export const handleThemeChange = (State: stateProps, Dispatch: React.Dispatch<themeActionProps>) => {
   Dispatch(
     {
       type: themeActionTypes.CHANGE_THEME,
