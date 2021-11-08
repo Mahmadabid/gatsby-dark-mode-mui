@@ -30,26 +30,12 @@ const ThemesProvider = ({ children }) => {
     // To change the preferred theme
     let theme = 'light';
 
-    // if (typeof window !== 'undefined') {
-    //     theme = localStorage.getItem('preferred-theme');
-    //     console.log(theme, state);
+    if (typeof window !== 'undefined') {
+        theme = localStorage.getItem('preferred-theme');
+        theme = theme ? theme : 'light';
+        state.theme = theme        
+    }
 
-    //     theme = theme ? theme : 'light';
-    //     state.theme = theme
-    //     console.log(theme, state);
-
-    // }
-
-    React.useEffect(() => {
-        if (typeof window !== 'undefined') {
-            theme = localStorage.getItem('preferred-theme');
-            theme = theme ? theme : 'light';
-            state.theme = theme
-        }
-        return () => {
-
-        }
-    }, [state.theme])
     return (
         <GlobalStateContext.Provider value={state}>
             <GlobalDispatchContext.Provider value={dispatch}>
