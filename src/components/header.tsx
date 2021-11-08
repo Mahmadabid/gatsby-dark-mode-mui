@@ -7,23 +7,15 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { GlobalDispatchContext, GlobalStateContext } from '../global/reducer/themeReducer';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { actionTypes } from '../global/types/reducerTypes';
+import { handleThemeChange } from '../global/theme/theme';
 
 export default function Header() {
 
     const ThemeState = React.useContext(GlobalStateContext);
     const ThemeDispatch = React.useContext(GlobalDispatchContext);
 
-    // Function to save user preference along with dispatch
-    const handleThemeChange = () => {
-        ThemeDispatch(
-            {
-                type: actionTypes.CHANGE_THEME,
-                payload: ThemeState.theme === 'light' ? 'dark' : 'light'
-            }
-        )
-        localStorage.setItem('preferred-theme', ThemeState.theme === 'light' ? 'dark' : 'light');
-    }
+    // To get the theme preference from local storage
+    const theme = localStorage.getItem('preferred-theme');
 
     return (
         <AppBar position="static">
@@ -36,8 +28,8 @@ export default function Header() {
                 <Typography variant="h6" color="inherit" component="div">
                     Dark Mode
                 </Typography>
-                <IconButton onClick={handleThemeChange} style={{ alignItems: 'right' }} color="inherit">
-                    {ThemeState.theme === 'light' ? <Brightness7Icon /> : <Brightness4Icon />}
+                <IconButton onClick={() => {handleThemeChange(ThemeState, ThemeDispatch)}} style={{ alignItems: 'right' }} color="inherit">
+                    {theme === 'light' ? <Brightness7Icon /> : <Brightness4Icon />}
                 </IconButton>
             </Toolbar>
         </AppBar >

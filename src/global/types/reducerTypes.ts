@@ -2,11 +2,11 @@ export type stateProps = {
     theme: string
 };
 
-export enum actionTypes {
+export enum themeActionTypes {
     CHANGE_THEME = 'CHANGE_THEME'
 }
 
 export type actionProps = {
-    type: actionTypes
+    type: themeActionTypes
     payload: string
 }

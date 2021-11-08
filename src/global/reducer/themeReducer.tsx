@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@mui/material";
 import React, { createContext, useReducer } from "react";
 import { darkTheme, lightTheme } from "../theme/theme";
-import { stateProps, actionProps, actionTypes } from "../types/reducerTypes";
+import { stateProps, actionProps, themeActionTypes } from "../types/reducerTypes";
 
 const initialState = {
     theme: "light"
@@ -9,7 +9,7 @@ const initialState = {
 
 const themeReducer = (state: stateProps, action: actionProps) => {
     switch (action.type) {
-        case actionTypes.CHANGE_THEME:
+        case themeActionTypes.CHANGE_THEME:
             return {
                 ...state,
                 theme: action.payload
