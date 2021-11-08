@@ -6,9 +6,11 @@ import { stateProps, themeActionProps, themeActionTypes } from "../types/reducer
 const initialState = {
     theme: typeof(window) !== 'undefined' ? localStorage.getItem('preferred-theme')? localStorage.getItem('preferred-theme'): 'light' : 'light'
 };
+if (typeof window!=='undefined') {
+   
 
 const pref = matchMedia("(prefers-color-scheme: dark)")
-console.log(pref);
+console.log('pref',pref);
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
     console.log(e.matches);
     if (e.matches) {
@@ -23,7 +25,7 @@ matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
         }
     }
 });
-
+}
 console.log('init',initialState);
 const theme = initialState.theme;
 console.log('theme',theme);
