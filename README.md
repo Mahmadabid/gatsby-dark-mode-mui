@@ -31,7 +31,10 @@ const HomePage = () => {
     const ThemeDispatch = React.useContext(GlobalDispatchContext);
 
     return (
-        <Button variant="contained" color="primary" onClick={() => {handleThemeChange(ThemeState, ThemeDispatch)}}>Toogle Theme</Button>
+        <div>
+            <p>{ThemeState.theme}</p>
+            <Button variant="contained" color="primary" onClick={() => {handleThemeChange(ThemeState, ThemeDispatch)}}>Toogle Theme</Button>
+        </div>
     );
 }
 
