@@ -1,0 +1,26 @@
+{
+  "name": "gatsby-dark-mode-mui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gatsby-dark mode-mui",
+  "author": "Mahmadabid",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.5",
+    "@mui/material": "^5.0.6",
+    "gatsby": "^4.1.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
