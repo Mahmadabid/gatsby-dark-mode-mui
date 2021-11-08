@@ -1,9 +1,11 @@
-# Dark Mode with Reactjs, Gatsbyjs, Material-Ui(MUI) and Typescript
+# Dark Mode with Reactjs, Gatsbyjs, Material-UI(MUI) and Typescript
+
+[Demo](https://gatsby-dark-mode-mui.netlify.app/)
 
 ## How To Use
 ```terminal
-$ git clone git@github.com:cieloazul310/gatsby-material-ui-darkmode.git
-$ cd gatsby-material-ui-darkmode
+$ git clone git@github.com:Mahmadabid/gatsby-dark-mode-mui.git
+$ cd gatsby-dark-mode-mui
 
 # develop
 $ npm run develop
@@ -18,6 +20,24 @@ $ yarn build
 
 # Toggle color mode
 ```jsx
+import { Button } from "@mui/material";
+import React from "react";
+import { GlobalStateContext, GlobalDispatchContext } from "../global/reducer/themeReducer";
+import { handleThemeChange } from "../global/theme/theme";
 
+const HomePage = () => {
+
+    const ThemeState = React.useContext(GlobalStateContext);
+    const ThemeDispatch = React.useContext(GlobalDispatchContext);
+
+    return (
+        <div>
+            <p>{ThemeState.theme}</p>
+            <Button variant="contained" color="primary" onClick={() => {handleThemeChange(ThemeState, ThemeDispatch)}}>Toogle Theme</Button>
+        </div>
+    );
+}
+
+export default HomePage;
 }
 ```
