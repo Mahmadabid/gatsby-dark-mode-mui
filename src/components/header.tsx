@@ -31,6 +31,8 @@ export default function Header() {
                         <GitHubIcon style={{fontSize: '2rem'}} />
                     </IconButton>
                 </a>
+{ThemeState.theme}
+{theme}
                 <Typography variant="h6" color="inherit" component="div">
                     Dark Mode
                 </Typography>
