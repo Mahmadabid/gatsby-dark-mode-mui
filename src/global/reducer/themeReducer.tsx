@@ -40,7 +40,7 @@ const ThemesProvider = ({ children }) => {
     }
 
     return (
-        <GlobalStateContext.Provider value={state}>
+        <GlobalStateContext.Provider value={theme}>
             <GlobalDispatchContext.Provider value={dispatch}>
                 <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
                     {children}
