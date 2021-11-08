@@ -29,14 +29,6 @@ const HomePage = () => {
 
     const ThemeState = React.useContext(GlobalStateContext);
     const ThemeDispatch = React.useContext(GlobalDispatchContext);
-    
-    let theme = 'light';
-
-    if (typeof window !== 'undefined') {
-        theme = localStorage.getItem('preferred-theme');
-        theme = theme ? theme : 'light';
-        ThemeState.theme = theme;
-    }
 
     return (
         <div>
