@@ -11,20 +11,7 @@ if (typeof window!=='undefined') {
 
 const pref = matchMedia("(prefers-color-scheme: dark)")
 console.log('pref',pref);
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
-    console.log(e.matches);
-    if (e.matches) {
-        console.log('dark');
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('preferred-theme', 'dark');
-        }
-    } else {
-        console.log('light');
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('preferred-theme', 'light');
-        }
-    }
-});
+matchMedia("(prefers-color-scheme: dark)")? localStorage.setItem('preferred-theme','dark'): localStorage.setItem('preferred-theme','dark');
 }
 console.log('init',initialState);
 const theme = initialState.theme;
