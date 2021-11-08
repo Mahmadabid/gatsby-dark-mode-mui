@@ -4,7 +4,7 @@ import { darkTheme, lightTheme } from "../theme/theme";
 import { stateProps, themeActionProps, themeActionTypes } from "../types/reducerTypes";
 
 const initialState = {
-    theme: typeof(window) !== 'undefined'? localStorage.getItem('preferred-theme')? localStorage.getItem('preferred-theme'): 'light': 'light'
+    theme: "light"
 };
 
 const themeReducer = (state: stateProps, action: themeActionProps) => {
@@ -26,19 +26,19 @@ const ThemesProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(themeReducer, initialState);
 
-    // To change the preferece theme
-    // let theme = 'light';
+    // To change the preferred theme
+    let theme = 'light';
 
-    // if (typeof window !== 'undefined') {
-    //     theme = localStorage.getItem('preferred-theme');
-    //     theme = theme ? theme : 'light';
-    //     state.theme = theme
-    // }
-    
+    if (typeof window !== 'undefined') {
+        theme = localStorage.getItem('preferred-theme');
+        theme = theme ? theme : 'light';
+        state.theme = theme
+    }
+
     return (
         <GlobalStateContext.Provider value={state}>
             <GlobalDispatchContext.Provider value={dispatch}>
-                <ThemeProvider theme={state.theme === 'light'? lightTheme: darkTheme}>
+                <ThemeProvider theme={theme === 'dark' ? lightTheme : darkTheme}>
                     {children}
                 </ThemeProvider>
             </GlobalDispatchContext.Provider>
