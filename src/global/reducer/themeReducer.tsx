@@ -29,8 +29,8 @@ const ThemesProvider = ({ children }) => {
     let theme = 'light';
 
     if (typeof window !== 'undefined') {
-        themed = localStorage.getItem('preferred-theme');
-        theme = themed ? themed : 'light';
+        theme = localStorage.getItem('preferred-theme');
+        theme = theme ? theme : 'light';
         state.theme = theme
     }
     
