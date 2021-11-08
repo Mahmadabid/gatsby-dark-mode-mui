@@ -31,14 +31,18 @@ const ThemesProvider = ({ children }) => {
 
     if (typeof window !== 'undefined') {
         theme = localStorage.getItem('preferred-theme');
+        console.log(theme, state);
+        
         theme = theme ? theme : 'light';
         state.theme = theme
+        console.log(theme, state);
+        
     }
 
     return (
         <GlobalStateContext.Provider value={state}>
             <GlobalDispatchContext.Provider value={dispatch}>
-                <ThemeProvider theme={theme === 'dark' ? lightTheme : darkTheme}>
+                <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
                     {children}
                 </ThemeProvider>
             </GlobalDispatchContext.Provider>
