@@ -7,6 +7,18 @@ const initialState = {
     theme: "light"
 };
 
+// To store the preference if users
+let theme = 'light';
+
+if (typeof window !== 'undefined') {
+    theme = localStorage.getItem('preferred-theme');
+    theme = theme ? theme : 'light';
+    initialState.theme = theme
+}
+
+console.log(initialState, theme);
+
+
 const themeReducer = (state: stateProps, action: themeActionProps) => {
     switch (action.type) {
         case themeActionTypes.CHANGE_THEME:
@@ -25,14 +37,6 @@ export const GlobalDispatchContext = createContext<React.Dispatch<themeActionPro
 const ThemesProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(themeReducer, initialState);
-    
-    let theme = 'light';
-
-    if (typeof window !== 'undefined') {
-        const themed = window.localStorage.getItem('preferred-theme');
-        theme = themed ? themed : 'light';
-        state.theme = theme
-    }
     
     return (
         <GlobalStateContext.Provider value={state}>
