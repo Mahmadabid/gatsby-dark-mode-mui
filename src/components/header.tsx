@@ -20,6 +20,7 @@ export default function Header() {
     if (typeof window !== 'undefined') {
         theme = localStorage.getItem('preferred-theme');
         theme = theme ? theme : 'light';
+        ThemeState.theme = theme;
     }
 
     return (
