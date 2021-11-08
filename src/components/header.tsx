@@ -14,15 +14,6 @@ export default function Header() {
     const ThemeState = React.useContext(GlobalStateContext);
     const ThemeDispatch = React.useContext(GlobalDispatchContext);
 
-    // To get the theme preference from local storage
-    let theme = 'light';
-
-    if (typeof window !== 'undefined') {
-        themed = localStorage.getItem('preferred-theme');
-        theme = themed ? themed : 'light';
-        ThemeState.theme = theme;
-    }
-
     return (
         <AppBar position="static">
             <Toolbar style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }} variant="dense">
@@ -32,7 +23,6 @@ export default function Header() {
                     </IconButton>
                 </a>
 {ThemeState.theme}
-{theme}
                 <Typography variant="h6" color="inherit" component="div">
                     Dark Mode
                 </Typography>
