@@ -7,7 +7,7 @@ const initialState = {
     theme: "light"
 };
 
-// To store the preference if users
+// To store the theme preference of users
 let theme = 'light';
 
 if (typeof window !== 'undefined') {
