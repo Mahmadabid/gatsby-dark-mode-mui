@@ -25,9 +25,13 @@ export const GlobalDispatchContext = createContext<React.Dispatch<actionProps>>(
 const ThemesProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(themeReducer, initialState);
+    
+    let theme = 'light';
 
-    const theme = localStorage.getItem('preferred-theme');
-
+    if (typeof window !== 'undefined') {
+        theme = localStorage.getItem('preferred-theme');
+    }
+    
     return (
         <GlobalStateContext.Provider value={state}>
             <GlobalDispatchContext.Provider value={dispatch}>

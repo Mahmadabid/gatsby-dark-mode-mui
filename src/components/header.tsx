@@ -15,7 +15,11 @@ export default function Header() {
     const ThemeDispatch = React.useContext(GlobalDispatchContext);
 
     // To get the theme preference from local storage
-    const theme = localStorage.getItem('preferred-theme');
+    let theme = ThemeState.theme;
+
+    if (typeof window !== 'undefined') {
+        theme = localStorage.getItem('preferred-theme');
+    }
 
     return (
         <AppBar position="static">
