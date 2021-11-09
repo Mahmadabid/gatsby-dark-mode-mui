@@ -7,7 +7,6 @@ const initialState = {
     // theme: 'light'
     theme: typeof window !== 'undefined' ? localStorage.getItem('preferred-theme') ? localStorage.getItem('preferred-theme') : 'light' : 'light'
 };
-console.log('init', initialState.theme);
 
 const themeReducer = (state: stateProps, action: themeActionProps) => {
     switch (action.type) {
@@ -25,15 +24,16 @@ export const GlobalStateContext = createContext(initialState);
 export const GlobalDispatchContext = createContext<React.Dispatch<themeActionProps>>(() => { });
 
 const ThemesProvider = ({ children }) => {
-
-    const [state, dispatch] = useReducer(themeReducer, initialState);
     const [theme, setTheme] = React.useState(typeof window !== 'undefined' ? localStorage.getItem('preferred-theme') ? localStorage.getItem('preferred-theme') : 'light' : 'light');
-    console.log('theme', theme);
+    const themed = {
+        theme
+    }
+    const [state, dispatch] = useReducer(themeReducer, themed);
+    console.log('theme', themed);
     
     useEffect(() => {
         setTheme(state.theme);
         console.log('updated',theme);
-        
     },[state.theme]);
 
     // To change the preferred theme
