@@ -26,7 +26,7 @@ export const GlobalDispatchContext = createContext<React.Dispatch<themeActionPro
 const ThemesProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(themeReducer, initialState);
-    const [theme, setTheme] = React.useState(state.theme);
+    const [theme, setTheme] = React.useState('dark');
     
     useEffect(() => {
         setTheme(state.theme);
