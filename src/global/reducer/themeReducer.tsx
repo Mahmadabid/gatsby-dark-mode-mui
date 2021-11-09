@@ -31,6 +31,7 @@ const ThemesProvider = ({ children }) => {
     const [theme, setTheme] = React.useState(0);
 
     themeFetch === 'dark'? setTheme(1) : setTheme(0);
+    state.theme === 'dark'? setTheme(1) : setTheme(0);
 
     // To change the preferred theme
     // let theme = 'light';
