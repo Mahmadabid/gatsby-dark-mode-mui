@@ -39,19 +39,24 @@ const ThemesProvider = ({ children }) => {
         setSwitch(false);
     }, []);
 
-    // set the initialSate equal to the localStorage theme
+    // Set the initialSate equal to the localStorage theme
     initialState.theme = theme
-    
+
     const [state, dispatch] = useReducer(themeReducer, initialState);
 
+    // Pass the theme before the effect of useEffect for typescript
+    const switchedState = {
+        theme: theme,
+    }
+
     return (
-        <ThemeProvider theme={switched ? theme === 'light' ? lightTheme : darkTheme : state.theme === 'light' ? lightTheme : darkTheme}>
-            <GlobalStateContext.Provider value={state}>
+        <ThemeProvider theme={switched ? lightTheme : state.theme === 'light' ? lightTheme : darkTheme}>
+            <GlobalStateContext.Provider value={switched? switchedState : state}>
                 <GlobalDispatchContext.Provider value={dispatch}>
                     {children}
                 </GlobalDispatchContext.Provider>
             </GlobalStateContext.Provider>
-        </ThemeProvider >
+        </ThemeProvider>
     );
 }
 
