@@ -3,9 +3,11 @@ import React, { createContext, useEffect, useReducer } from "react";
 import { darkTheme, lightTheme } from "../theme/theme";
 import { stateProps, themeActionProps, themeActionTypes } from "../types/reducerTypes";
 
+const themeFetch = typeof window !== 'undefined' ? localStorage.getItem('preferred-theme') ? localStorage.getItem('preferred-theme') : 'light' : 'light';
+
 const initialState = {
     // theme: 'light'
-    theme: typeof window !== 'undefined' ? localStorage.getItem('preferred-theme') ? localStorage.getItem('preferred-theme') : 'light' : 'light'
+    theme: themeFetch
 };
 
 const themeReducer = (state: stateProps, action: themeActionProps) => {
@@ -24,17 +26,8 @@ export const GlobalStateContext = createContext(initialState);
 export const GlobalDispatchContext = createContext<React.Dispatch<themeActionProps>>(() => { });
 
 const ThemesProvider = ({ children }) => {
-    const [theme, setTheme] = React.useState(typeof window !== 'undefined' ? localStorage.getItem('preferred-theme') ? localStorage.getItem('preferred-theme') : 'light' : 'light');
-    const themed = {
-        theme
-    }
-    const [state, dispatch] = useReducer(themeReducer, themed);
-    console.log('theme', themed);
-    
-    useEffect(() => {
-        setTheme(state.theme);
-        console.log('updated',theme);
-    },[state.theme]);
+
+    const [state, dispatch] = useReducer(themeReducer, initialState);
 
     // To change the preferred theme
     // let theme = 'light';
@@ -46,14 +39,13 @@ const ThemesProvider = ({ children }) => {
     // }
 
     return (
-        <GlobalStateContext.Provider value={state}>
-            {console.log('TP', theme)}
-            <GlobalDispatchContext.Provider value={dispatch}>
-                <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+        <ThemeProvider theme={state.theme === 'light' ? lightTheme : darkTheme}>
+            <GlobalStateContext.Provider value={state}>
+                <GlobalDispatchContext.Provider value={dispatch}>
                     {children}
-                </ThemeProvider>
-            </GlobalDispatchContext.Provider>
-        </GlobalStateContext.Provider>
+                </GlobalDispatchContext.Provider>
+            </GlobalStateContext.Provider>
+        </ThemeProvider>
     );
 }
 
