@@ -28,6 +28,9 @@ export const GlobalDispatchContext = createContext<React.Dispatch<themeActionPro
 const ThemesProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(themeReducer, initialState);
+    const [theme, setTheme] = React.useState(0);
+
+    themeFetch === 'dark'? setTheme(1) : setTheme(0);
 
     // To change the preferred theme
     // let theme = 'light';
@@ -39,7 +42,8 @@ const ThemesProvider = ({ children }) => {
     // }
 
     return (
-        <ThemeProvider theme={state.theme === 'light' ? lightTheme : darkTheme}>
+        // <ThemeProvider theme={state.theme === 'light' ? lightTheme : darkTheme}>
+        <ThemeProvider theme={theme === 1 ? darkTheme : state.theme === 'light' ? lightTheme : darkTheme}>
             <GlobalStateContext.Provider value={state}>
                 <GlobalDispatchContext.Provider value={dispatch}>
                     {children}
