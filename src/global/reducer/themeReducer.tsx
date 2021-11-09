@@ -3,7 +3,7 @@ import React, { createContext, useReducer } from "react";
 import { darkTheme, lightTheme } from "../theme/theme";
 import { stateProps, themeActionProps, themeActionTypes } from "../types/reducerTypes";
 
-// const themeFetch = typeof window !== 'undefined' ? localStorage.getItem('preferred-theme') ? localStorage.getItem('preferred-theme') : 'light' : 'dark';
+// const themeFetch = typeof window !== 'undefined' ? localStorage.getItem('preferred-theme') ? localStorage.getItem('preferred-theme') : 'light' : 'light';
 
 const initialState = {
     theme: 'light'
