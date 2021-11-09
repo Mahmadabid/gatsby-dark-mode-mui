@@ -30,8 +30,10 @@ const ThemesProvider = ({ children }) => {
     const [state, dispatch] = useReducer(themeReducer, initialState);
     const [theme, setTheme] = React.useState(0);
 
-    themeFetch === 'dark'? setTheme(1) : setTheme(0);
-    state.theme === 'dark'? setTheme(1) : setTheme(0);
+    useEffect(() => {
+        themeFetch === 'dark' ? setTheme(1) : setTheme(0);
+        state.theme === 'dark' ? setTheme(1) : setTheme(0);
+    } , [state.theme]);
 
     // To change the preferred theme
     // let theme = 'light';
