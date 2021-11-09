@@ -47,8 +47,8 @@ const ThemesProvider = ({ children }) => {
 
     return (
         <GlobalStateContext.Provider value={state}>
-            <GlobalDispatchContext.Provider value={dispatch}>
             {console.log('TP', theme)}
+            <GlobalDispatchContext.Provider value={dispatch}>
                 <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
                     {children}
                 </ThemeProvider>
