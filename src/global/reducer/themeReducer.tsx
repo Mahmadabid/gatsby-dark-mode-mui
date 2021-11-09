@@ -1,11 +1,11 @@
 import { ThemeProvider } from "@mui/material";
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 import { darkTheme, lightTheme } from "../theme/theme";
 import { stateProps, themeActionProps, themeActionTypes } from "../types/reducerTypes";
 
 const initialState = {
-    // theme: typeof(window) !== 'undefined' ? localStorage.getItem('preferred-theme')? localStorage.getItem('preferred-theme'): 'light' : 'light'
-    theme: 'light'
+    // theme: 'light'
+    theme: typeof window !== 'undefined' ? localStorage.getItem('preferred-theme') ? localStorage.getItem('preferred-theme') : 'light' : 'light'
 };
 
 const themeReducer = (state: stateProps, action: themeActionProps) => {
@@ -26,6 +26,11 @@ export const GlobalDispatchContext = createContext<React.Dispatch<themeActionPro
 const ThemesProvider = ({ children }) => {
 
     const [state, dispatch] = useReducer(themeReducer, initialState);
+    const [theme, setTheme] = React.useState(state.theme);
+    
+    useEffect(() => {
+        setTheme(state.theme);
+    },[state.theme]);
 
     // To change the preferred theme
     // let theme = 'light';
@@ -39,7 +44,7 @@ const ThemesProvider = ({ children }) => {
     return (
         <GlobalStateContext.Provider value={state}>
             <GlobalDispatchContext.Provider value={dispatch}>
-                <ThemeProvider theme={state.theme === 'light' ? lightTheme : darkTheme}>
+                <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
                     {children}
                 </ThemeProvider>
             </GlobalDispatchContext.Provider>

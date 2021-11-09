@@ -23,7 +23,7 @@ export const handleThemeChange = (State: stateProps, Dispatch: React.Dispatch<th
       payload: State.theme === 'light' ? 'dark' : 'light'
     }
   )
-  // if (typeof window !== 'undefined') {
-  //   localStorage.setItem('preferred-theme', State.theme === 'light' ? 'dark' : 'light');
-  // }
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('preferred-theme', State.theme === 'light' ? 'dark' : 'light');
+  }
 }
