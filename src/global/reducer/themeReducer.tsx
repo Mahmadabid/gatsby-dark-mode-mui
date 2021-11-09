@@ -27,8 +27,22 @@ export const GlobalDispatchContext = createContext<React.Dispatch<themeActionPro
 
 const ThemesProvider = ({ children }) => {
 
+    const [theme, setTheme] = React.useState('light');
+    React.useEffect(() => {
+        const localTheme = localStorage.getItem('preferred-theme');
+        if (localTheme) {
+            setTheme(localTheme);
+        }
+        else {
+            setTheme('light');
+        }
+    }, []);
+console.log(theme);
+
+    // set the initialSate equal to the localStorage theme
+    initialState.theme = theme
+
     const [state, dispatch] = useReducer(themeReducer, initialState);
-    // const [theme, setTheme] = React.useState(0);
 
     // useEffect(() => {
     //     themeFetch === 'dark' ? setTheme(1) : setTheme(0);
@@ -43,10 +57,11 @@ const ThemesProvider = ({ children }) => {
     //     theme = theme ? theme : 'light';
     //     state.theme = theme        
     // }
+console.log(2,theme);
 
     return (
         // <ThemeProvider theme={theme === 1 ? darkTheme : state.theme === 'light' ? lightTheme : darkTheme}>
-        <ThemeProvider theme={state.theme === 'light' ? lightTheme : darkTheme}>
+        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
             <GlobalStateContext.Provider value={state}>
                 <GlobalDispatchContext.Provider value={dispatch}>
                     {children}
