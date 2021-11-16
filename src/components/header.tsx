@@ -7,7 +7,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { GlobalDispatchContext, GlobalStateContext } from '../global/reducer/themeReducer';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { handleThemeChange } from '../global/theme/theme';
+import { handleThemeChange } from '../global/theme/darkModeToggle';
 
 export default function Header() {
 
