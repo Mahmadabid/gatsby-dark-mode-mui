@@ -7,6 +7,10 @@ const initialState = {
     theme: 'light'
 };
 
+if (typeof window !== 'undefined') {
+    initialState.theme = document.documentElement.className === '' ? 'light' : 'dark';
+}
+
 const themeReducer = (state: stateProps, action: themeActionProps) => {
     switch (action.type) {
         case themeActionTypes.CHANGE_THEME:
@@ -23,35 +27,18 @@ export const GlobalStateContext = createContext(initialState);
 export const GlobalDispatchContext = createContext<React.Dispatch<themeActionProps>>(() => { });
 
 const ThemesProvider = ({ children }) => {
-
-    const [theme, setTheme] = React.useState('light');
-    const [switched, setSwitch] = React.useState(true);
-
-    // Fetch localStorage and set it to theme
-    React.useEffect(() => {
-        const localTheme = localStorage.getItem('preferred-theme');
-        if (localTheme) {
-            setTheme(localTheme);
-        }
-        else {
-            setTheme('light');
-        }
-        setSwitch(false);
-    }, []);
-
-    // Set the initialSate equal to the localStorage theme
-    initialState.theme = theme
+    if (typeof window === 'undefined') {
+        // Never server-side render this, since we can't determine
+        // the correct initial state until we get to the client.
+        // Alternatively, use a loading placeholder here.
+        return null;
+    }
 
     const [state, dispatch] = useReducer(themeReducer, initialState);
 
-    // Pass the theme before the effect of useEffect for typescript
-    const switchedState = {
-        theme: theme,
-    }
-
     return (
-        <ThemeProvider theme={switched ? lightTheme : state.theme === 'light' ? lightTheme : darkTheme}>
-            <GlobalStateContext.Provider value={switched? switchedState : state}>
+        <ThemeProvider theme={document.documentElement.className === '' ? lightTheme : darkTheme}>
+            <GlobalStateContext.Provider value={state}>
                 <GlobalDispatchContext.Provider value={dispatch}>
                     {children}
                 </GlobalDispatchContext.Provider>
