@@ -11,6 +11,5 @@ export const handleThemeChange = (State: stateProps, Dispatch: React.Dispatch<th
     )
     if (typeof window !== 'undefined') {
         localStorage.setItem('preferred-theme', State.theme === 'light' ? 'dark' : 'light');
-        document.documentElement.className === ''? document.documentElement.className = 'dark': document.documentElement.className = '';
     }
 }
