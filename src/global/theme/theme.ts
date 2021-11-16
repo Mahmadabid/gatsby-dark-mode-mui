@@ -1,4 +1,6 @@
+import { stateProps, themeActionProps } from './../types/reducerTypes';
 import { createTheme } from "@mui/material";
+import { themeActionTypes } from "../types/reducerTypes";
 
 export const darkTheme = createTheme({
   palette: {
@@ -12,25 +14,16 @@ export const lightTheme = createTheme({
   },
 });
 
-// getTheme() can technically be run before window.__theme is set
-export function getTheme(): string | undefined {
-  return window.__theme;
-}
 
-export function setPreferredTheme(theme: 'light' | 'dark') {
-  window.__setPreferredTheme(theme);
-}
-
-export function addThemeListener(listener: () => void) {
-  if (typeof window === 'undefined' || !window.__themeListeners) {
-    return;
+// Function to save user preference along with dispatch
+export const handleThemeChange = (State: stateProps, Dispatch: React.Dispatch<themeActionProps>) => {
+  Dispatch(
+    {
+      type: themeActionTypes.CHANGE_THEME,
+      payload: State.theme === 'light' ? 'dark' : 'light'
+    }
+  )
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('preferred-theme', State.theme === 'light' ? 'dark' : 'light');
   }
-  window.__themeListeners.push(listener);
-}
-
-export function removeThemeListener(listener: () => void) {
-  if (typeof window === 'undefined' || !window.__themeListeners) {
-    return;
-  }
-  window.__themeListeners = window.__themeListeners.filter(l => l !== listener);
 }

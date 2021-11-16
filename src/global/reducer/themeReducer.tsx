@@ -49,8 +49,10 @@ const ThemesProvider = ({ children }) => {
         theme: theme,
     }
 
+    console.log(document.documentElement.className);
+    
     return (
-        <ThemeProvider theme={switched ? lightTheme : state.theme === 'light' ? lightTheme : darkTheme}>
+        <ThemeProvider theme={document.documentElement.className === '' ? lightTheme : darkTheme}>
             <GlobalStateContext.Provider value={switched? switchedState : state}>
                 <GlobalDispatchContext.Provider value={dispatch}>
                     {children}

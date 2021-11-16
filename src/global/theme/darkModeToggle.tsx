@@ -11,14 +11,6 @@ export const handleThemeChange = (State: stateProps, Dispatch: React.Dispatch<th
     )
     if (typeof window !== 'undefined') {
         localStorage.setItem('preferred-theme', State.theme === 'light' ? 'dark' : 'light');
+        document.documentElement.className === ''? document.documentElement.className = 'dark': document.documentElement.className = '';
     }
-}
-
-export const handleThemeChangeByClass = () => {
-    if (typeof window === 'undefined') {
-        // Never server-side render this, since we can't determine
-        // the correct initial state until we get to the client.
-        return null;
-    }
-    
 }
