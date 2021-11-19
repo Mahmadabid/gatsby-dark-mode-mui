@@ -22,18 +22,17 @@ $ yarn build
 ```jsx
 import { Button } from "@mui/material";
 import React from "react";
-import { GlobalStateContext, GlobalDispatchContext } from "../global/reducer/themeReducer";
-import { handleThemeChange } from "../global/theme/theme";
+import { handleThemeChange } from "../theme/darkModeToggle";
+import { themeContext } from "../theme/themeProvider";
 
 const HomePage = () => {
 
-    const ThemeState = React.useContext(GlobalStateContext);
-    const ThemeDispatch = React.useContext(GlobalDispatchContext);
+    const theme = React.useContext(themeContext);
 
     return (
         <div>
-            <p>Enjoy {ThemeState.theme} theme</p>
-            <Button variant="contained" color="primary" onClick={() => {handleThemeChange(ThemeState, ThemeDispatch)}}>Toogle Theme</Button>
+            <p>Enjoy {theme.theme} theme</p>
+            <Button variant="contained" color="primary" onClick={() => {handleThemeChange(theme.theme, theme.setTheme)}}>Toogle Theme</Button>
         </div>
     );
 }
