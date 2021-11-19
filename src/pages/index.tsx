@@ -1,11 +1,10 @@
 import React from "react";
 import Header from "../components/header";
-import Layout from "../components/layout";
 
 const HomePage = () => {
 
   return (
-    <Layout>
+    <>
       <Header />
       <div style={{ marginLeft: '20px' }}>
         <h1>Dark Mode Toggle</h1>
@@ -22,7 +21,7 @@ const HomePage = () => {
           <li>Saving User Preference</li>
         </ol>
       </div>
-    </Layout>
+    </>
   )
 }
 

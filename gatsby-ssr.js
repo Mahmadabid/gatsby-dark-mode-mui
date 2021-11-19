@@ -1,4 +1,4 @@
-import ThemesProvider from "./src/global/reducer/themeReducer";
+import ThemesProvider from "./src/theme/themeProvider";
 import React from 'react';
 import "./src/styles/global.css";
 import Layout from "./src/components/layout";
@@ -42,6 +42,6 @@ export const onRenderBody = ({ setHeadComponents }) => {
           .replace(/\n/g, ' ')
           .replace(/ {2}/g, ''),
       }}
-    />,
+    key = {Math.random()}/>,
   ]);
 };

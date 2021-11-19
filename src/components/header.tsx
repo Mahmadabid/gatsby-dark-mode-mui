@@ -5,14 +5,13 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { GlobalDispatchContext, GlobalStateContext } from '../global/reducer/themeReducer';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { handleThemeChange } from '../global/theme/darkModeToggle';
+import { handleThemeChange } from '../theme/darkModeToggle';
+import { themeContext } from '../theme/themeProvider';
 
-export default function Header() {
+export default function Header() {    
 
-    const ThemeState = React.useContext(GlobalStateContext);
-    const ThemeDispatch = React.useContext(GlobalDispatchContext);
+    const theme = React.useContext(themeContext);
 
     return (
         <AppBar position="static">
@@ -25,8 +24,8 @@ export default function Header() {
                 <Typography variant="h6" color="inherit" component="div">
                     Dark Mode
                 </Typography>
-                <IconButton onClick={() => {handleThemeChange(ThemeState, ThemeDispatch)}} style={{ alignItems: 'right' }} color="inherit">
-                    {ThemeState.theme === 'light' ? <Brightness7Icon /> : <Brightness4Icon />}
+                <IconButton onClick={() => {handleThemeChange(theme.theme, theme.setTheme)}} style={{ alignItems: 'right' }} color="inherit">
+                    {theme.theme === 'light' ? <Brightness7Icon /> : <Brightness4Icon />}
                 </IconButton>
             </Toolbar>
         </AppBar >
